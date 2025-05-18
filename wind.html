@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Wind | Space Weather Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f3f7;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #0277bd, #039be5);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            padding: 1rem 0;
+            font-weight: bold;
+            color: #062748;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .home-link {
+            padding: 1rem 0;
+            color: #0c4a8b;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            background-color: #f5f9ff;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .main-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 300px; /* adjust as needed */
+            margin: 0 auto;
+            border-radius: 8px;
+            object-fit: contain;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .image-caption {
+            font-style: italic;
+            text-align: center;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+        .video-section {
+            background-color: #f5f9ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .forecast-chart {
+            background-color: #f5f9ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        .forecast-chart img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+        .card-caption {
+            font-style: italic;
+            text-align: center;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+        h2 {
+            color: #0277bd;
+            margin-top: 0;
+        }
+        h3 {
+            color: #0277bd;
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .impact-list {
+            padding-left: 1.2rem;
+        }
+        .impact-list li {
+            margin-bottom: 0.7rem;
+        }
+        .parameter-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .parameter-box {
+            background-color: #e1f5fe;
+            padding: 1rem;
+            border-radius: 6px;
+        }
+        .parameter-box h4 {
+            margin-top: 0;
+            color: #0277bd;
+        }
+        footer {
+            background-color: #062748;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        /* Updated styling for vertical image */
+        .main-image img {
+            max-width: 70%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Solar Wind</h1>
+            <p class="subtitle">Monitoring the Flow of Charged Particles from the Sun</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Space Weather Dashboard</a>
+            <a href="index.html" class="home-link">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-grid">
+            <div class="main-content">
+                <!-- Main Image at the top -->
+                <div class="main-image">
+                    <img src="space_weather_data/visualizations/solar_wind_speed_bz.png" alt="Solar Wind Forecast Chart">
+                </div>
+                <div class="video-section">
+                    <h3>3-D Visualization</h3>
+                    <div class="video-container">
+                        <video controls width="100%">
+                            <source src="images/Untitled video - Made with Clipchamp.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <p class="card-caption">3D visualization of solar wind interaction with Earth's magnetosphere</p>
+                </div>
+                
+                <h2>About Solar Wind</h2>
+                <p>The solar wind is a persistent emission of particles, predominantly protons and electrons, expelled from the atmosphere of the sun (corona) into space. These particles move at high velocities, carrying with them the magnetic fields surrounding the sun's body, thus creating a plasma that interacts with the magnetic fields and atmospheres of planets.</p>
+                
+                <p>It's imperative to understand the effects of solar winds on Earth's magnetosphere, as they can lead to phenomena such as geomagnetic storms and the formation of auroras. The interaction between the solar wind and Earth's magnetic field creates a complex system that affects various technological systems.</p>
+                
+                <h3>Impact on Aviation</h3>
+                <ul class="impact-list">
+                    <li><strong>Communication Disruptions:</strong> High-speed solar wind streams can disrupt HF radio communications used by aircraft, particularly on polar routes.</li>
+                    <li><strong>Navigation Errors:</strong> Disturbances in the ionosphere caused by solar wind can affect GPS and other navigation systems, potentially leading to position errors.</li>
+                    <li><strong>Radiation Concerns:</strong> Solar wind can bring energetic particles that increase radiation exposure at high altitudes, which is a concern for crew and passengers.</li>
+                    <li><strong>Flight Path Adjustments:</strong> Airlines may need to adjust flight paths to avoid areas of intense geomagnetic activity caused by solar wind interactions.</li>
+                </ul>
+                
+                <h3>Impact on Telecommunications</h3>
+                <ul class="impact-list">
+                    <li><strong>Satellite Operations:</strong> Solar wind can affect satellite operations through charging effects and orbital perturbations.</li>
+                    <li><strong>Signal Propagation:</strong> Changes in the ionosphere due to solar wind can affect signal propagation for radio communications and satellite transmissions.</li>
+                    <li><strong>Power Grid Interference:</strong> Geomagnetic induced currents from solar wind interactions can affect power grids that support telecommunications infrastructure.</li>
+                    <li><strong>Ground System Effects:</strong> Ground-based communication systems can experience interference from geomagnetic disturbances caused by solar wind.</li>
+                </ul>
+                
+                <h3>Prediction Methods</h3>
+                <p>Advanced prediction methods for solar wind involve a combination of Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs). Research by Upendran et al. demonstrates that pre-training a ConvNet model on the ImageNet database before connecting it to a Long-Short Term Memory Cell (LSTM) can effectively predict solar wind speed.</p>
+                
+                <p>These models use Extreme Ultra Violet (EUV) images at 193 and 211 Angstroms from the Atmospheric Imaging Assembly (AIA) onboard the Solar Dynamic Observatory (SDO) as inputs. These images make prominent features such as coronal holes and active regions visible. The trained model can then predict solar wind speed based on data from NASA's OMNIWEB.</p>
+                
+                <p>Accurate prediction of solar wind parameters allows industries to anticipate geomagnetic disturbances and take preventive measures to protect sensitive systems and infrastructure.</p>
+                
+                <!-- Video Section at the end -->
+                
+            </div>
+            
+            <div class="sidebar">
+                <h2>Key Solar Wind Parameters</h2>
+                <p>Understanding and monitoring these parameters is essential for predicting the effects of solar wind on Earth's magnetosphere:</p>
+                
+                <div class="parameter-grid">
+                    <div class="parameter-box">
+                        <h4>Speed</h4>
+                        <p>Typically 300-800 km/s, with high-speed streams exceeding 800 km/s. Faster solar wind generally causes stronger geomagnetic effects.</p>
+                    </div>
+                    
+                    <div class="parameter-box">
+                        <h4>Density</h4>
+                        <p>Usually 3-10 particles per cubic centimeter at Earth orbit. Higher density can increase the impact of solar wind on Earth's magnetosphere.</p>
+                    </div>
+                    
+                    <div class="parameter-box">
+                        <h4>Temperature</h4>
+                        <p>Typically around 100,000 K. Temperature affects the energy of particles interacting with Earth's magnetosphere.</p>
+                    </div>
+                    
+                    <div class="parameter-box">
+                        <h4>Magnetic Field</h4>
+                        <p>The strength and orientation of the interplanetary magnetic field (IMF) carried by solar wind is crucial for determining geomagnetic activity.</p>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Interplanetary Magnetic Field (IMF)</h3>
+                <p>The interplanetary magnetic field (IMF) is crucial to numerous space processes. Its orientation influences the solar wind's thermal properties, and increases in the IMF's strength help block low-energy cosmic rays from entering the solar system.</p>
+                
+                <p>The IMF also guides energetic particles from the Sun as they move through interplanetary space. Geomagnetic activity intensifies when the IMF near Earth turns southward, as this orientation allows more efficient energy transfer from the solar wind to Earth's magnetosphere.</p>
+                
+                <p>Research indicates that the product of IMF and solar wind velocity (VB) is especially geo-effective in creating magnetic storms that impact Earth systems.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Space Weather Dashboard | Based on research by Rangnekar, Kshirsagar, Nikam, & Mane</p>
+    </footer>
+</body>
+</html>

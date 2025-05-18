@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-dark: #0a1128;
+            --primary: #0f3460;
+            --primary-light: #1a5f7a;
+            --accent: #38b6ff;
+            --accent-light: #5ce1e6;
+            --dark-text: #1e293b;
+            --light-text: #f8fafc;
+            --light-bg: #f0f5ff;
+            --card-bg: #ffffff;
+            --gradient-bg: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: var(--gradient-bg);
+            position: relative;
+            padding: 8rem 0 6rem;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/api/placeholder/1200/300');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .stars-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+            opacity: 0;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            bottom: -10px;
+            left: 25%;
+            background: var(--accent-light);
+            border-radius: 4px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+            opacity: 0.9;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin: -4rem auto 4rem;
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .intro h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .intro p {
+            color: var(--dark-text);
+            opacity: 0.85;
+            font-size: 1.05rem;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: var(--gradient-bg);
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        
+        .card-image::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+            z-index: 1;
+        }
+        
+        .card-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 i {
+            margin-right: 0.7rem;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .card p {
+            color: var(--dark-text);
+            opacity: 0.75;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+        
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+            margin-top: auto;
+        }
+        
+        .card-link i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .card-link:hover {
+            color: var(--primary);
+        }
+        
+        .card-link:hover i {
+            transform: translateX(4px);
+        }
+        
+        .sectors-heading {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .sectors-heading::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            bottom: -10px;
+            left: calc(50% - 40px);
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        
+        .sector-info {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .sector-info:hover {
+            transform: translateY(-5px);
+        }
+        
+        .sector-info h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent-light);
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sector-info h2 i {
+            margin-right: 0.8rem;
+            color: var(--accent);
+        }
+        
+        .sector-info p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+            color: var(--dark-text);
+            opacity: 0.85;
+        }
+        
+        .key-impacts {
+            background-color: rgba(56, 182, 255, 0.08);
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin: 1.8rem 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .key-impacts h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1rem;
+        }
+        
+        .key-impacts ul {
+            padding-left: 1.5rem;
+        }
+        
+        .key-impacts li {
+            margin-bottom: 0.7rem;
+        }
+        
+        .key-impacts strong {
+            color: var(--primary);
+        }
+        
+        .current-status {
+            display: flex;
+            margin-top: 2rem;
+            background: linear-gradient(to right, rgba(56, 182, 255, 0.1), rgba(92, 225, 230, 0.05));
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            align-items: center;
+        }
+        
+        .status-icon {
+            flex: 0 0 60px;
+            font-size: 2.2rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.7);
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .status-content {
+            flex: 1;
+            padding-left: 1.5rem;
+        }
+        
+        .status-content h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        footer {
+            background: var(--gradient-bg);
+            color: var(--light-text);
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-link {
+            color: var(--light-text);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-link:hover {
+            opacity: 1;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-icon {
+            color: var(--light-text);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Animated elements */
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                padding: 6rem 0 4rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .intro {
+                margin-top: -3rem;
+                padding: 1.5rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .sector-info {
+                padding: 1.5rem;
+            }
+            
+            .key-impacts {
+                padding: 1rem;
+            }
+            
+            .current-status {
+                flex-direction: column;
+            }
+            
+            .status-icon {
+                margin-bottom: 1rem;
+            }
+            
+            .status-content {
+                padding-left: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-image {
+                height: 180px;
+            }
+        }
+        
+        /* Custom animations for cards */
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="stars-bg" id="stars-container"></div>
+        <div class="header-content animate__animated animate__fadeIn">
+            <h1>SPACE PORTAL</h1>
+            <p class="subtitle">Monitoring and Predicting Space Weather Impacts on Aviation and Telecommunications</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-satellite"></i> Real-time Space Weather Monitoring</h2>
+            <p>Space weather phenomena can significantly impact aviation and telecommunications infrastructure. This portal provides real-time monitoring and predictions of key space weather components to help industries prepare for and mitigate potential disruptions.</p>
+        </div>
+
+        <div class="card-grid">
+            <!-- Solar X-ray Flux Card -->
+            <a href="xray.html" style="text-decoration: none;">
+                <div class="card animate__animated animate__fadeInUp">
+                    <div class="card-image">
+                        <img src="images/xray.jpg" alt="Solar X-ray Flux">
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fas fa-sun"></i> Solar X-ray Flux</h3>
+                        <p>Monitor X-ray emissions from solar flares that can cause radio blackouts and disrupt satellite operations. The R-scale categorizes the severity, from R1 (minor) to R5 (extreme).</p>
+                        <span class="card-link">View details <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Coronal Mass Ejections Card -->
+            <a href="cme.html" style="text-decoration: none;">
+                <div class="card animate__animated animate__fadeInUp">
+                    <div class="card-image">
+                        <img src="images/cme.jpg" alt="Coronal Mass Ejections">
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fas fa-meteor"></i> Coronal Mass Ejections</h3>
+                        <p>Track vast expulsions of solar material that can trigger intense geomagnetic storms, disrupt satellite operations, and pose radiation risks to high-altitude flights.</p>
+                        <span class="card-link">View details <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Solar Wind Card -->
+            <a href="wind.html" style="text-decoration: none;">
+                <div class="card animate__animated animate__fadeInUp">
+                    <div class="card-image">
+                        <img src="images/wind.jpg" alt="Solar Wind">
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fas fa-wind"></i> Solar Wind</h3>
+                        <p>Monitor the persistent flow of charged particles from the Sun that interact with Earth's magnetic field, potentially causing geomagnetic storms and auroras.</p>
+                        <span class="card-link">View details <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Aurora Card -->
+            <a href="aurora.html" style="text-decoration: none;">
+                <div class="card animate__animated animate__fadeInUp">
+                    <div class="card-image">
+                        <img src="images/aurora.jpg" alt="Aurora Activity">
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="fas fa-stars"></i> Aurora Activity</h3>
+                        <p>Observe stunning visual displays in polar regions that indicate geomagnetic activity, which can have serious effects on communication systems and high-altitude radiation exposure.</p>
+                        <span class="card-link">View details <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <h2 class="sectors-heading animate__animated animate__fadeIn">Space Weather Impacts on Critical Infrastructure</h2>
+        
+        <div class="sector-info animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-plane"></i> Space Weather & Aviation</h2>
+            <p>Space weather events pose unique challenges to the aviation industry, particularly for aircraft operating on polar routes or at high altitudes. Solar flares, coronal mass ejections, and energetic particle events can impact critical aviation systems and operations in several ways.</p>
+            
+            <div class="key-impacts">
+                <h3>Key Aviation Impacts:</h3>
+                <ul>
+                    <li><strong>HF Communications Disruption:</strong> Solar X-ray flares can cause sudden ionospheric disturbances resulting in radio blackouts on the sunlit side of Earth. This affects High Frequency (HF) communications critical for transoceanic and polar flight paths.</li>
+                    <li><strong>Navigation System Degradation:</strong> Ionospheric scintillation during geomagnetic storms can degrade the accuracy of GNSS/GPS signals, affecting navigation precision and approaches.</li>
+                    <li><strong>Radiation Exposure:</strong> Solar energetic particle events can increase radiation levels at flight altitudes, particularly near the poles, potentially requiring flight rerouting or altitude changes.</li>
+                    <li><strong>Satellite Communication Issues:</strong> Satellite links used for voice and data communication may experience interference or degradation during severe space weather events.</li>
+                </ul>
+            </div>
+            
+            <p>Airlines and operators typically implement mitigation strategies such as alternative routing, communication backup procedures, and enhanced monitoring during periods of elevated solar activity. Modern aircraft are designed with redundant systems to maintain safety during space weather events.</p>
+
+            <div class="current-status">
+                <div class="status-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="status-content">
+                    <h4>Aviation Status</h4>
+                    <p>Currently, space weather conditions present minimal impact to aviation operations globally. HF communications on polar routes may experience occasional minor degradation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sector-info animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-satellite-dish"></i> Space Weather & Telecommunications</h2>
+            <p>The telecommunications sector relies heavily on satellite systems, global positioning services, and ground-based infrastructure—all of which can be affected by space weather events of varying magnitude. Understanding these interactions is crucial for maintaining reliable communications networks.</p>
+            
+            <div class="key-impacts">
+                <h3>Key Telecommunications Impacts:</h3>
+                <ul>
+                    <li><strong>Satellite Operations:</strong> Geomagnetic storms can cause satellite orientation issues, solar panel degradation, and electronic component anomalies. Solar energetic particles can cause single event upsets in satellite electronics.</li>
+                    <li><strong>GPS Signal Accuracy:</strong> Ionospheric disturbances during space weather events can degrade positioning accuracy by several meters, affecting applications that require precision timing and positioning.</li>
+                    <li><strong>Ground-Based Infrastructure:</strong> Geomagnetically induced currents (GICs) during severe solar storms can affect power grids that support telecommunications infrastructure.</li>
+                    <li><strong>Wireless Signal Propagation:</strong> Changes in ionospheric conditions can affect radio signal propagation, potentially disrupting various wireless communication systems.</li>
+                </ul>
+            </div>
+            
+            <p>Telecommunications providers implement various hardening and redundancy measures to protect against space weather effects. These include radiation-hardened components in satellites, backup power systems, and alternative routing capabilities to maintain network integrity during space weather events.</p>
+
+            <div class="current-status">
+                <div class="status-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="status-content">
+                    <h4>Telecommunications Status</h4>
+                    <p>Current space weather conditions indicate normal operations for telecommunications systems. Minor GPS accuracy fluctuations may be experienced in high-latitude regions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Space Portal</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated stars background
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsContainer = document.getElementById('stars-container');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position
+                const top = Math.random() * 100;
+                const left = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                
+                // Random animation delay
+                const delay = Math.random() * 4;
+                
+                star.style.top = `${top}%`;
+                star.style.left = `${left}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
+            
+            // Add animation classes with delay for better page load experience
+            setTimeout(() => {
+                const animatedElements = document.querySelectorAll('.animate__animated');
+                animatedElements.forEach(el => {
+                    el.style.visibility = 'visible';
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>

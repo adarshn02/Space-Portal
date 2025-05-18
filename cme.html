@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coronal Mass Ejections | Space Weather Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f3f7;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #b71b1c, #e64a19);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            padding: 1rem 0;
+            font-weight: bold;
+            color: #062748;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .home-link {
+            padding: 1rem 0;
+            color: #0c4a8b;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        /* Updated main-image styling for vertical image */
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        /* Updated styling for vertical image */
+        .main-image img {
+            max-width: 70%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+        
+        h2 {
+            color: #b71b1c;
+            margin-top: 0;
+        }
+        h3 {
+            color: #b71b1c;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .impact-list {
+            padding-left: 1.2rem;
+        }
+        .impact-list li {
+            margin-bottom: 0.7rem;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #b71b1c;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background-color: #b71b1c;
+        }
+        .timeline-item h4 {
+            margin-top: 0;
+            color: #333;
+        }
+        footer {
+            background-color: #062748;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Coronal Mass Ejections (CMEs)</h1>
+            <p class="subtitle">Tracking Massive Solar Eruptions</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Space Weather Dashboard</a>
+            <a href="index.html" class="home-link">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="main-image">
+                    <img src="cmev/cme_direction_visualization.png" alt="CME Direction and Angular Width Visualization">
+                </div>
+                
+                <h2>About Coronal Mass Ejections</h2>
+                <p>Coronal Mass Ejections (CMEs) are vast amounts of solar material that are expelled into surrounding space from the Sun's corona. In terms of economic impact, CMEs are expected to be the most influential space weather events. Historical documentation of "great" space weather events suggests their recurrence is about once every 40-60 years.</p>
+                
+                <p>CMEs can trigger intense geomagnetic storms that disrupt satellite operations, communication systems, and power grids, and pose radiation risks to astronauts and high-altitude flights. The kinematics of CMEs is believed to be primarily a result of their interaction with the solar wind.</p>
+                
+                <h3>Impact on Aviation</h3>
+                <ul class="impact-list">
+                    <li><strong>Radiation Exposure:</strong> CMEs can increase radiation levels at high altitudes, posing health risks to passengers and crew on polar routes.</li>
+                    <li><strong>Navigation System Disruptions:</strong> The geomagnetic storms triggered by CMEs can interfere with GPS and other navigation systems used by aircraft.</li>
+                    <li><strong>Communication Blackouts:</strong> HF radio communications can be severely disrupted during CME-induced geomagnetic storms, affecting air-to-ground communications.</li>
+                    <li><strong>Flight Rerouting:</strong> Airlines may need to reroute flights away from polar regions during severe CME events to avoid radiation exposure and communication issues.</li>
+                </ul>
+                
+                <h3>Impact on Telecommunications</h3>
+                <ul class="impact-list">
+                    <li><strong>Satellite Damage:</strong> The high-energy particles from CMEs can damage satellite electronics and degrade solar panels.</li>
+                    <li><strong>Signal Disruptions:</strong> Geomagnetic storms can cause ionospheric disturbances that disrupt radio and satellite signals.</li>
+                    <li><strong>Power Grid Failures:</strong> Large CMEs can induce currents in power lines, potentially causing widespread blackouts that affect telecommunications infrastructure.</li>
+                    <li><strong>Data Transmission Errors:</strong> Signal degradation during geomagnetic storms can lead to increased error rates in data transmission.</li>
+                </ul>
+                
+                <h3>Prediction Methods</h3>
+                <p>Researchers like Guastavino et al. have proposed physics-driven machine learning approaches to predict CME travel times. These models enhance prediction accuracy by analyzing solar wind data, providing better lead time for industries affected by geomagnetic storms.</p>
+                
+                <p>Physics-based models can be used for an enhanced understanding of the training phase in supervised machine learning processes. By combining traditional drag-based models with neural networks, researchers have developed architectures that can more accurately predict when CMEs will impact Earth's magnetosphere.</p>
+            </div>
+            
+            <div class="sidebar">
+                <h2>CME Evolution Timeline</h2>
+                <p>Understanding the lifecycle of a Coronal Mass Ejection helps predict its potential impact on Earth systems:</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Formation</h4>
+                        <p>CMEs often begin with instabilities in the Sun's magnetic field, frequently associated with solar flares.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Ejection</h4>
+                        <p>Massive amounts of plasma and magnetic field are expelled from the Sun's corona, sometimes at speeds exceeding 3,000 km/s.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Propagation</h4>
+                        <p>The CME travels through interplanetary space, interacting with the solar wind and potentially accelerating or decelerating.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Earth Arrival</h4>
+                        <p>Depending on its initial speed, a CME typically takes 1-3 days to reach Earth after being observed leaving the Sun.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Geomagnetic Storm</h4>
+                        <p>If the CME's magnetic field orientation is southward, it can connect with Earth's magnetic field, triggering a geomagnetic storm.</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem;"><strong>Note:</strong> The severity of a CME's impact depends on its size, speed, and magnetic field orientation. Early prediction allows industries to prepare and implement protective measures.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Space Weather Dashboard</p>
+    </footer>
+</body>
+</html>

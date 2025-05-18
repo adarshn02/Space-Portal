@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Activity | Space Weather Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f3f7;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #4527a0, #7e57c2);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            padding: 1rem 0;
+            font-weight: bold;
+            color: #062748;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .home-link {
+            padding: 1rem 0;
+            color: #0c4a8b;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        .image-container {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .data-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        h2 {
+            color: #4527a0;
+            margin-top: 0;
+        }
+        h3 {
+            color: #4527a0;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .impact-list {
+            padding-left: 1.2rem;
+        }
+        .impact-list li {
+            margin-bottom: 0.7rem;
+        }
+        .aurora-scale {
+            margin-top: 2rem;
+        }
+        .kp-index {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 5px;
+            margin-top: 1rem;
+        }
+        .kp-item {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .kp-0 { background-color: #d0d1e6; color: #333; }
+        .kp-1 { background-color: #a6bddb; color: #333; }
+        .kp-2 { background-color: #74a9cf; }
+        .kp-3 { background-color: #3690c0; }
+        .kp-4 { background-color: #0570b0; }
+        .kp-5 { background-color: #045a8d; }
+        .kp-6 { background-color: #023858; }
+        .kp-7 { background-color: #8c2981; }
+        .kp-8 { background-color: #8c0026; }
+        
+        .monitoring-method {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f3e5f5;
+            border-radius: 6px;
+        }
+        
+        footer {
+            background-color: #062748;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 600px;
+            margin-top: 3rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .full-width-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+        
+        .caption {
+            font-style: italic;
+            text-align: center;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Aurora Activity</h1>
+            <p class="subtitle">Monitoring Geomagnetic Activity and Aurora Forecasts</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Space Weather Dashboard</a>
+            <a href="index.html" class="home-link">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-grid">
+            <div class="main-content">
+                <!-- Graph First (Image 1) -->
+                <div class="image-container">
+                    <img src="space_weather_data/visualizations/kp_forecast.png" alt="Kp Index Forecast Graph" class="data-image">
+                </div>
+                <p class="caption">Kp Index Forecast showing historical and predicted geomagnetic activity with storm classification</p>
+                
+                <!-- Image 2 - Aurora Forecast -->
+                <div class="image-container">
+                    <img src="space_weather_data/visualizations/aurora_forecast_north.png" alt="Aurora Forecast Map" class="data-image">
+                </div>
+                <p class="caption">Aurora Forecast for 2025-05-17 09:00:00 UTC showing predicted aurora visibility</p>
+                
+                <!-- Image 3 - Aurora Visualization -->
+                <div class="image-container">
+                    <img src="images/aurora.webp" alt="Aurora Visualization" class="data-image" style="height: 400px;">
+                </div>
+                <p class="caption">Visualization of Aurora Borealis over North America and Europe</p>
+                
+                <h2>About Aurora Activity</h2>
+                <p>The aurora is a stunning natural light display in Earth's sky, predominantly seen in high-latitude regions (around the Arctic and Antarctic). Beyond their visual beauty, auroras and their related activities can have serious effects on communication systems, terrestrial infrastructure, and high-altitude radiation exposure.</p>
+                
+                <p>Auroras occur when charged particles from the sun (mainly electrons and protons) interact with gases in Earth's upper atmosphere. The color of the aurora depends on the type of gas particles that are colliding with the charged particles. Oxygen produces green and red light, while nitrogen produces blue and purple.</p>
+                
+                <p>Monitoring aurora activity provides valuable information about the state of Earth's magnetosphere and the intensity of geomagnetic storms that can affect various technological systems.</p>
+                
+                <h3>Impact on Aviation</h3>
+                <ul class="impact-list">
+                    <li><strong>Communication Challenges:</strong> Strong auroral activity can disrupt high-frequency (HF) radio communications, which are crucial for aircraft flying over polar regions where satellite coverage may be limited.</li>
+                    <li><strong>Navigation System Disturbances:</strong> Ionospheric disturbances associated with auroras can degrade GPS accuracy and reliability, affecting navigation systems.</li>
+                    <li><strong>Radiation Exposure:</strong> Increased particle precipitation during auroral events can lead to higher radiation levels at flight altitudes, particularly on polar routes.</li>
+                    <li><strong>Route Planning:</strong> Airlines use aurora forecasts to plan flights that avoid areas of intense geomagnetic activity, potentially leading to longer flight times and increased fuel consumption.</li>
+                </ul>
+                
+                <h3>Impact on Telecommunications</h3>
+                <ul class="impact-list">
+                    <li><strong>Satellite Operations:</strong> Auroral activity is associated with geomagnetic storms that can affect satellite electronics, causing anomalies or failures.</li>
+                    <li><strong>Signal Interference:</strong> Irregularities in the ionosphere during auroral events can cause scintillation (rapid fluctuations) in satellite signals, degrading service quality.</li>
+                    <li><strong>Power Grid Effects:</strong> Geomagnetically induced currents (GICs) during strong auroral events can damage power transformers that support telecommunications infrastructure.</li>
+                    <li><strong>Ground-based Communications:</strong> High-frequency radio propagation can be disrupted during intense auroral activity, affecting various communication services.</li>
+                </ul>
+                
+                <h3>Prediction Methods</h3>
+                <p>Modern prediction methods for aurora activity utilize advanced machine learning techniques. For example, research by Mooney et al. (2021) focuses on evaluating auroral forecasts against satellite observations to improve prediction accuracy. Additionally, Sado et al. (2022) have applied transfer learning techniques to aurora image classification and magnetic disturbance evaluation.</p>
+                
+                <p>These approaches combine data from ground-based all-sky cameras, satellite-based auroral observations, and measurements of Earth's magnetic field to provide comprehensive aurora forecasts. By using transfer learning and neural networks, researchers can identify patterns in aurora imagery that correlate with magnetic disturbances, enabling more accurate predictions of auroral activity and its potential impacts.</p>
+            </div>
+            
+            <div class="sidebar">
+                <h2>Aurora Monitoring Tools</h2>
+                <p>Several instruments and methods are used to monitor and forecast aurora activity:</p>
+                
+                <div class="monitoring-method">
+                    <h4>Ground-Based All-Sky Cameras</h4>
+                    <p>These instruments capture wide-angle images of the sky to detect and measure auroral activity in real-time, providing valuable data for space weather monitoring.</p>
+                </div>
+                
+                <div class="monitoring-method">
+                    <h4>Auroral Observatories</h4>
+                    <p>Specialized facilities that house multiple instruments for comprehensive monitoring of aurora and related geomagnetic phenomena.</p>
+                </div>
+                
+                <div class="monitoring-method">
+                    <h4>Satellite-Based Observations</h4>
+                    <p>Instruments on spacecraft like the Defense Meteorological Satellite Program (DMSP) monitor auroral activity from space, providing global coverage.</p>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Kp-Index: Geomagnetic Activity Scale</h3>
+                <p>The Kp-index is a global geomagnetic storm index that ranges from 0 (very quiet) to 9 (extremely disturbed). It correlates strongly with auroral activity, where higher Kp values typically indicate auroras visible at lower latitudes.</p>
+                
+                <div class="aurora-scale">
+                    <div class="kp-index">
+                        <div class="kp-item kp-0">0</div>
+                        <div class="kp-item kp-1">1</div>
+                        <div class="kp-item kp-2">2</div>
+                        <div class="kp-item kp-3">3</div>
+                        <div class="kp-item kp-4">4</div>
+                        <div class="kp-item kp-5">5</div>
+                        <div class="kp-item kp-6">6</div>
+                        <div class="kp-item kp-7">7</div>
+                        <div class="kp-item kp-8">8+</div>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>Kp 0-3:</strong> Quiet to unsettled conditions<br>
+                    <strong>Kp 4:</strong> Active conditions, possible visible auroras at high latitudes<br>
+                    <strong>Kp 5-6:</strong> Minor to moderate storm, auroras visible at middle latitudes<br>
+                    <strong>Kp 7-9:</strong> Strong to extreme storm, auroras possibly visible at low latitudes</p>
+                </div>
+                
+                <div class="monitoring-method" style="margin-top: 2rem;">
+                    <h4>Current Forecast</h4>
+                    <p>Based on the Kp Index forecast shown above, we are currently expecting <strong>G3 (Strong) geomagnetic storm conditions</strong> in the coming days, with Kp values potentially reaching 7-8+. This indicates aurora may be visible at unusually low latitudes.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Python Code Result Section -->
+        <div class="full-width-section">
+            <h2>Real-Time Global Flight Tracking & Aurora Viewing Locations</h2>
+            <p>The map below shows real-time flight tracking data overlaid with popular aurora viewing locations. This helps visualize how flights might be affected by current aurora activity and identifies prime locations for aurora observation. Toggle between layers to focus on specific data.</p>
+            
+            <div class="map-container">
+                <iframe src="real_time_global_map.html" title="Real-time Global Flight Map with Aurora Viewing Locations"></iframe>
+            </div>
+            
+            <p>During periods of heightened geomagnetic activity, flights near or through polar regions may need to be rerouted to avoid communication disruptions and increased radiation exposure. The current forecast indicates potential for significant aurora activity that could impact high-latitude flights.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Space Weather Dashboard</p>
+    </footer>
+</body>
+</html>

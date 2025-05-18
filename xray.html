@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar X-ray Flux | Space Weather Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f3f7;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #a83800, #ff5722);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            padding: 1rem 0;
+            font-weight: bold;
+            color: #062748;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .home-link {
+            padding: 1rem 0;
+            color: #0c4a8b;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        /* Updated main-image styling */
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* New styling for the image */
+        .main-image img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            display: block;
+        }
+        
+        h2 {
+            color: #a83800;
+            margin-top: 0;
+        }
+        h3 {
+            color: #a83800;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .impact-list {
+            padding-left: 1.2rem;
+        }
+        .impact-list li {
+            margin-bottom: 0.7rem;
+        }
+        .scale-container {
+            margin-top: 2rem;
+        }
+        .scale-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 6px;
+        }
+        .r1 { background-color: #e3f2fd; }
+        .r2 { background-color: #bbdefb; }
+        .r3 { background-color: #90caf9; }
+        .r4 { background-color: #64b5f6; }
+        .r5 { background-color: #42a5f5; }
+        footer {
+            background-color: #062748;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Solar X-ray Flux</h1>
+            <p class="subtitle">Monitoring Solar Radiation and Radio Blackouts</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Space Weather Dashboard</a>
+            <a href="index.html" class="home-link">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="main-image">
+                    <img src="xray/noaa_style_xray_flux_20250517_115731.png" alt="Solar X-ray Flux Graph">
+                </div>
+                
+                <h2>About Solar X-ray Flux</h2>
+                <p>The sun emits a range of X-rays during solar activity, which reach Earth's atmosphere and surface. These X-rays are energetic enough to interact with atoms in materials, causing X-ray fluorescence (XRF) to occur. Solar X-ray fluxes can be harmful due to their high energy and their interactions with Earth's atmosphere and magnetic field.</p>
+                
+                <p>X-ray fluorescence (XRF) is based on the principle of atomic (X-ray) photon emissions following excitation of the atoms due to bombardment by external X-ray radiations from the sun, which causes the ejection of an inner orbital electron (K, L, or M shell) from the atom.</p>
+                
+                <h3>Impact on Aviation</h3>
+                <ul class="impact-list">
+                    <li><strong>HF Radio Blackouts:</strong> Solar X-ray emissions can cause high-frequency (HF) radio blackouts, disrupting communication between aircraft and ground control, especially in polar routes.</li>
+                    <li><strong>Navigation Systems:</strong> X-rays can disrupt GPS and other satellite navigation systems, potentially causing navigational errors.</li>
+                    <li><strong>Flight Rerouting:</strong> During severe solar X-ray events, flights may need to be rerouted to avoid communication disruptions.</li>
+                </ul>
+                
+                <h3>Impact on Telecommunications</h3>
+                <ul class="impact-list">
+                    <li><strong>Satellite Communications:</strong> X-ray emissions can degrade satellite signals, leading to communication disruptions.</li>
+                    <li><strong>Data Loss:</strong> High levels of X-ray flux can cause data corruption or loss in satellite transmissions.</li>
+                    <li><strong>Service Disruptions:</strong> Telecommunications services relying on satellite communication may experience temporary outages during solar X-ray events.</li>
+                </ul>
+                
+                <h3>Prediction Methods</h3>
+                <p>The prediction of solar X-ray events is critical because of the wide range of harmful effects they can have on technology, human health, and communication systems. Researchers like Stevenson et al. (2021) have developed convolutional neural networks that use solar surface images to predict solar X-ray flux, providing early warnings for potential solar flares that could lead to HF radio blackouts.</p>
+                
+                <p>Machine learning approaches are particularly useful for X-ray flux prediction because they can identify patterns in solar activity that precede flares, giving industries time to prepare for potential disruptions.</p>
+            </div>
+            
+            <div class="sidebar">
+                <h2>R-Scale: Radio Blackout Scale</h2>
+                <p>The R-scale categorizes the severity of solar radiation storms, particularly those that cause radio blackouts. These storms are often associated with solar flares, which emit X-rays that can disrupt high-frequency (HF) radio communications, GPS, and satellite operations.</p>
+                
+                <div class="scale-container">
+                    <div class="scale-item r1">
+                        <strong>R1 (Minor)</strong>: Minor degradation of HF radio communication on sunlit side, occasional loss of radio contact.
+                    </div>
+                    <div class="scale-item r2">
+                        <strong>R2 (Moderate)</strong>: Limited blackout of HF radio communication on sunlit side, loss of radio contact for tens of minutes.
+                    </div>
+                    <div class="scale-item r3">
+                        <strong>R3 (Strong)</strong>: Wide area blackout of HF radio communication, loss of radio contact for about an hour.
+                    </div>
+                    <div class="scale-item r4">
+                        <strong>R4 (Severe)</strong>: HF radio communication blackout on most of the sunlit side of Earth for 1-2 hours, GPS navigation degraded for hours.
+                    </div>
+                    <div class="scale-item r5">
+                        <strong>R5 (Extreme)</strong>: Complete HF radio blackout on the entire sunlit side of Earth, loss of radio contact for several hours, navigation outages for many hours.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Space Weather Dashboard</p>
+    </footer>
+</body>
+</html>
